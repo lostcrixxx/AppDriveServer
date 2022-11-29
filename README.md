@@ -2,7 +2,12 @@
 Aplicativo utilizando google drive como servidor
 
 // CODE https://script.google.com/
-´´´´
+
+```
+var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/ID_HERE/edit#gid=0");
+
+var sheet = ss.getSheetByName('database'); // be very careful ... it is the sheet name .. so it should match
+    
 function doGet(e) {
   var op = e.parameter.action;
 
@@ -18,10 +23,6 @@ function doPost(e) {
 }
 
 function insert_value(e) {
-    var doc = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/ID_HERE/edit#gid=0");
-
-    var sheet = doc.getSheetByName('database'); // be very careful ... it is the sheet name .. so it should match
-    
     var uId = sheet.getLastRow()+1;
     var uName= e.parameter.uName;
     var uImage = e.parameter.uImage;
@@ -53,12 +54,6 @@ function insert_value(e) {
 }
 
 function read_all_value(request){
-  var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/ID_HERE/edit#gid=0");
- 
-  //Note : here sheet is sheet name , don't get confuse with other operation 
-  //var sheet="database";
-  var sheet = ss.getSheetByName('database');
-
   var records={};
  
   var rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).getValues();
@@ -78,4 +73,4 @@ function read_all_value(request){
    var result=JSON.stringify(records);
    return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON);
 }
-´´´´
+```
