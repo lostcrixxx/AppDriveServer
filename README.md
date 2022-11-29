@@ -2,6 +2,7 @@
 Aplicativo utilizando google drive como servidor
 
 // CODE https://script.google.com/
+´´´´
 function doGet(e) {
   var op = e.parameter.action;
 
@@ -77,3 +78,4 @@ function read_all_value(request){
    var result=JSON.stringify(records);
    return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON);
 }
+´´´´
